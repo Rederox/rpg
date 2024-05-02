@@ -3,17 +3,17 @@ import { Monster } from './Monster';
 
 
 class MockMonster {
-    skills : Skill[] = [
-        new Skill("Fireball",SkillType.Attack,2,80,50),
-        new Skill("Heal", SkillType.Heal, 1, 100, 20),
-        new Skill("Thunderbolt", SkillType.Attack, 3, 70, 70)
-    ]
-    monsters : Monster[] = [
-        new Monster("Machin",30,40,200,30,this.skills),
-        new Monster("Goblin", 20, 25, 150, 15, this.skills),
-        new Monster("Orc", 35, 50, 250, 40, this.skills),
-        new Monster("Dragon", 100, 150, 500, 100, this.skills)
-    ]    
+    mockSkills: Skill[] = [
+        new Skill("Thunder Shock", SkillType.Attack, 0, 90, 30),
+        new Skill("Quick Heal", SkillType.Heal, 2, 100, 20),
+        new Skill("Fire Blast", SkillType.Attack, 0, 80, 50),
+        new Skill("Paralyzing Shock", SkillType.Attack, 1, 75, 25)
+    ];
+    mockMonsters: Monster[] = [
+        new Monster("Pikachu", 45, 35, 120, 90, [this.mockSkills[0], this.mockSkills[1]]),
+        new Monster("Charizard", 60, 55, 150, 80, [this.mockSkills[2]]),
+        new Monster("Electabuzz", 50, 45, 110, 105, [this.mockSkills[0], this.mockSkills[3]])
+    ];
     
 
 }   
