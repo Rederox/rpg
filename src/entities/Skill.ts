@@ -18,7 +18,7 @@ export class Skill {
         this.name = name;
         this.type = type;
         this.delay = delay;
-        this.activationTurn = -1;
+        this.activationTurn = 0;
         this.precision = precision;
         this.power = power;
     }
@@ -28,10 +28,10 @@ export class Skill {
     }
 
     isAvailable(currentTurn: number): boolean {
-        return this.activationTurn >= currentTurn;
+        return currentTurn === 0 || this.activationTurn <= currentTurn;
     }
 
     resetActivation() {
-        this.activationTurn = -1;
+        this.activationTurn = 0;
     }
 }
