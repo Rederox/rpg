@@ -6,8 +6,8 @@ export enum SkillType {
 export class Skill {
     name: string;
     type: SkillType;
-    delayMax: number;
     delay: number;
+    activationTurn: number;
     precision: number;
     power: number;
 
@@ -18,8 +18,20 @@ export class Skill {
         this.name = name;
         this.type = type;
         this.delay = delay;
-        this.delayMax = delay;
+        this.activationTurn = -1;
         this.precision = precision;
         this.power = power;
+    }
+
+    setActivation(turn: number) {
+        this.activationTurn = turn + this.delay;
+    }
+
+    isAvailable(currentTurn: number): boolean {
+        return this.activationTurn >= currentTurn;
+    }
+
+    resetActivation() {
+        this.activationTurn = -1;
     }
 }
