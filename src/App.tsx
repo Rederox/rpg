@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Battle } from './entities/Battle';
 import { Damage, Heal, Monster } from './entities/Monster';
 import { Skill, SkillType } from './entities/Skill';
+import Element from './entities/Elements';
 import { timeout } from './utils/functions';
 
 
 function App() {
   
-    const [battle, setBattle] = useState(new Battle(new Monster("Pikachu", 80, 50, 120, 60, [new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75),new Skill("Statik",SkillType.Heal,0,90,50)]), new Monster("Boss", 80, 50, 200, 4, [new Skill("Fire Blast", SkillType.Attack, 0, 85, 50)])));
+    const [battle, setBattle] = useState(new Battle(new Monster("Pikachu", 80, 50, 120, 60, [new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75, Element.Electric),new Skill("Statik",SkillType.Heal,0,90,50,Element.Electric)],Element.Electric), new Monster("Boss", 80, 50, 200, 4, [new Skill("Fire Blast", SkillType.Attack, 0, 85, 50, Element.Electric)], Element.Fire)));
     const [availableSkills, setAvailableSkills] = useState(battle.monster.skills);
 
     const [turn, setTurn] = useState<boolean>(false);
