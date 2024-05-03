@@ -1,10 +1,15 @@
-import { Monster } from "./Monster";
+import { HistoryEntry, Monster } from "./Monster";
 import { Skill } from "./Skill";
 
 type BattleStatus = "ACTIVE" | "MONSTER_WON" | "BOSS_WON";
 
 export interface History{
     turn: number;
+}
+export interface BossSkillInfo{
+    skill: Skill;
+    history: HistoryEntry;
+
 }
 export class Battle {
     monster: Monster;
@@ -50,45 +55,44 @@ export class Battle {
         return monster.skills.filter(skill => skill.activationTurn === 0 || skill.isAvailable(this.turn));
     }
 
-    monsterTurn(): any {
-        const skill = this.getNextAvailableSkill(this.monster);
-        if (skill) {
-            const skillIndex = this.monster.skills.indexOf(skill);
-            this.useSkill(this.monster, this.boss, skillIndex);
-            return skill;
-        } else {
-            console.log(`${this.monster.name} has no available skills and skips a turn.`);
-            return "NO_SKILLS_AVAILABLE";
-        }
-    }
+    // monsterTurn(): any {
+    //     const skill = this.getNextAvailableSkill(this.monster);
+    //     if (skill) {
+    //         const skillIndex = this.monster.skills.indexOf(skill);
+    //         this.useSkill(this.monster, this.boss, skillIndex);
+    //         return skill;
+    //     } else {
+    //         console.log(`${this.monster.name} has no available skills and skips a turn.`);
+    //         return "NO_SKILLS_AVAILABLE";
+    //     }
+    // }
 
-    bossTurn(): any {
+    bossTurn(): BossSkillInfo | null{
         const skill = this.getNextAvailableSkill(this.boss);
         if (skill) {
             const skillIndex = this.boss.skills.indexOf(skill);
-            const impact = this.useSkill(this.boss, this.monster, skillIndex);
-            return impact;
+            const history = this.useSkill(this.boss, this.monster, skillIndex);
+            return {skill: skill, history: history};
         } else {
             console.log(`${this.boss.name} has no available skills and skips a turn.`)
             return null;
         }
     }
 
-    useSkill(user: Monster, target: Monster, skillIndex: number) : any {
+    useSkill(user: Monster, target: Monster, skillIndex: number) : any{
         let skill = user.skills[skillIndex];
+        console.log("skill",user.name,skill.name ,skill.delay)
         if (!skill.isAvailable(this.turn)) {
             console.log(`${skill.name} is cooling down.`);
             return "COOLING_DOWN";
         }
-        if (skill.delay > 0 && skill.activationTurn === 0) {
-            skill.setActivation(this.turn);
-            console.log(`${skill.name} will activate in ${skill.delay} turns.`);
-            return "DELAYED";
-        }
-        const impact = user.useSkill(target, skillIndex);
+        else {
+            const history = user.useSkill(target, skillIndex);
         // skill.resetActivation();
-        skill.setActivation(this.turn);
-        return impact;
+            skill.setActivation(this.turn);
+            return history;
+        }
+        
     }
     
 
