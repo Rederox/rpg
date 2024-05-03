@@ -1,7 +1,7 @@
 import { Skill } from '@/entities/Skill';
 import React from 'react';
 
-const BattleControls = ({ battle, handleSkillUse }: any) => {
+const BattleControls = ({ battle, handleSkillUse, endGame }: any) => {
 
     return (
         <div className="controls p-4 bg-gray-800 text-white m-2 rounded-md flex">
@@ -21,11 +21,10 @@ const BattleControls = ({ battle, handleSkillUse }: any) => {
                 </button>
             ))}
             <button
-                onClick={() => battle.nextTurn()}
-                disabled={battle.status !== "ACTIVE"}
+                onClick={endGame}
                 className="p-2 m-2 bg-blue-500 rounded hover:bg-blue-400 transition-colors disabled:bg-gray-500"
             >
-                End Turn
+                Fin de jeu
             </button>
         </div>
     );

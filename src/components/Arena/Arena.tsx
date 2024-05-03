@@ -6,23 +6,52 @@ import { Skill, SkillType } from '../../entities/Skill';
 import Pokemon from './pokemon/pokemon';
 import LogsAttack from './logs/logsAttack';
 import Element from '../../entities/Elements';
-import { tradTpyesTOfrench } from '../../utils/functions';
+import { bossByDifficulty, tradTpyesTOfrench, monsterByName, getSpiritGifByName } from '../../utils/functions';
 import BattleControls from './BattleControls';
 
-const Arena: React.FC = () => {
+interface ArenaProps {
+    character: string;
+    map: string;
+    music: string;
+    difficulty: string;
+    endGame: any
+}
+
+const Arena: React.FC<ArenaProps> = ({ character, map, music, difficulty, endGame }) => {
+    const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement | null>(null);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+    console.log("character ==============================", character)
+    const toggleAudio = (audioSrc: string) => {
+        if (audioPlayer) {
+            if (!isPlaying) {
+                audioPlayer.src = music;
+                audioPlayer.play();
+
+            } else {
+                audioPlayer.pause();
+            }
+            setIsPlaying(!isPlaying);
+        }
+    };
+
+    useEffect(() => {
+        if (audioPlayer) {
+            audioPlayer.src = music;
+            audioPlayer.play();
+        }
+    }, [audioPlayer, music]);
+
+
+    const muteAndUnmute = () => {
+        if (audioPlayer) {
+            audioPlayer.muted = !audioPlayer.muted;
+        }
+    };
+
     const initialBattle = new Battle(
-        new Monster("Pikachu", 50, 40, 160, 60, [
-            new Skill("Thunderbolt ", SkillType.Attack, 0, 75, 80,Element.Electric),
-            new Skill("Quick Attack ", SkillType.Attack, 0, 100, 60,Element.Normal),
-            new Skill("Statik ", SkillType.Heal, 2, 90, 70,Element.Electric)
-        ], 
-        Element.Electric
-        ),
-        new Monster("Boss", 80, 60, 200, 4, [
-            new Skill("Fire Blast ", SkillType.Attack, 0, 85, 60,Element.Fire),
-            new Skill("Flamethrower ", SkillType.Attack, 2, 75, 70,Element.Fire),
-            new Skill("Heal ", SkillType.Heal, 5, 100, 50,Element.Normal),
-        ], Element.Water)
+        monsterByName(character) as Monster,
+        bossByDifficulty(difficulty)
     );
 
     const [battle, setBattle] = useState<Battle>(initialBattle);
@@ -45,43 +74,45 @@ const Arena: React.FC = () => {
                 const impact = bossSkillInfo?.history;
                 setBossImpact(impact);
                 const history = battle.nextTurn();
-                setHistoryAttack((prev: any) => [...prev, {history, impact}]);
+                setHistoryAttack((prev: any) => [...prev, { history, impact }]);
                 setTurn(false);
             }, 2000);
             return () => clearTimeout(timer);
         }
     }, [turn, battle]);
-    
+
     const handleSkillUse = (skillIndex: number) => {
-        console.log("skill", battle.monster.skills[skillIndex].name,"delay", battle.monster.skills[skillIndex].activationTurn);
-        const impact = battle.useSkill(battle.monster,battle.boss, skillIndex);
+        console.log("skill", battle.monster.skills[skillIndex].name, "delay", battle.monster.skills[skillIndex].activationTurn);
+        const impact = battle.useSkill(battle.monster, battle.boss, skillIndex);
         const history = battle.nextTurn();
         setMonsterImpact(impact);
-        setHistoryAttack((prev: any) => [...prev, {history, impact}]);
+        setHistoryAttack((prev: any) => [...prev, { history, impact }]);
         setTurn(true);
     };
-    
-
-    console.log(historyAttack);
 
     return (
         <>
-            <div className="flex">
-                <div className="bg-gray-200 p-5 m-3 rounded-lg w-[70%] flex flex-col justify-between items-stretch">
-                    <div className="self-end">
-                        <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image="pokemon/pikachu.gif" maxpv={battle.boss.pvMax} impact={monsterImpact?.type == "Heal" ? bossImpact : monsterImpact}/>
+            <div className=''>
+                <button onClick={muteAndUnmute}>mute</button>
+                <div className="flex  w-[80vw]">
+                    <div style={{ backgroundImage: `url('${map}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+                        className={`bg-gray-200 rounded-lg w-[50vw] m-3 p-5 flex flex-col justify-between items-stretch relative`}>
+                        <div className="self-end ">
+                            <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image={getSpiritGifByName(battle.boss.name,"Front")} maxpv={battle.boss.pvMax} impact={monsterImpact?.type == "Heal" ? bossImpact : monsterImpact} />
+                        </div>
+                        <div className="self-start">
+                            <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image={getSpiritGifByName(character,"Back")} maxpv={battle.monster.pvMax} impact={bossImpact?.type == "Heal" ? monsterImpact : bossImpact} />
+                        </div>
                     </div>
-                    <div className="self-start">
-                        <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image="pokemon/pickachuBack.gif" maxpv={battle.monster.pvMax} impact={bossImpact?.type == "Heal" ? monsterImpact: bossImpact}/> 
+                    <div className='logs '>
+                        {historyAttack && <LogsAttack entries={historyAttack} />}
                     </div>
                 </div>
-                <div className='logs '>
-                {historyAttack && <LogsAttack entries={historyAttack} />}
-                </div>
-            </div>
 
-            <p>Status: {battle.status}</p>
-            <BattleControls battle={battle} handleSkillUse={handleSkillUse} />
+                <p>Status: {battle.status}</p>
+                <BattleControls battle={battle} handleSkillUse={handleSkillUse} endGame={endGame} />
+                <audio ref={setAudioPlayer} />
+            </div>
         </>
     );
 };
