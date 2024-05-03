@@ -20,6 +20,19 @@ const PopUpImpact: React.FC<PopUpImpactProps> = ({ impact }) => {
         return null;
     }
 
+    function getEfficacityText(multiplier: number) {
+        switch (multiplier) {
+            case 0.5:
+                return "Pas très efficace...";
+            case 1:
+                return "C'est normal...";
+            case 2:
+                return "C'est super efficace !";
+            default:
+                return "C'est normal...";
+        }
+    }
+
     let content;
     switch (impact.type) {
         case "Heal":
@@ -32,7 +45,7 @@ const PopUpImpact: React.FC<PopUpImpactProps> = ({ impact }) => {
         case "Damage":
             content = (
                 <div className="bg-red-300 p-2 rounded shadow">
-                    <p>-{impact.content.damageTaken}</p>
+                    <p>-{impact.content.damageTaken} ({getEfficacityText(impact.content.damamageMultiplier)})</p>
                 </div>
             );
             break;
