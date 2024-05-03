@@ -28,7 +28,8 @@ export class Skill {
     }
 
     setActivation(turn: number) {
-        this.activationTurn = turn + this.delay;
+        console.log("turn", turn, "delay", this.delay);
+        this.activationTurn = turn + (2*this.delay);
     }
 
     isAvailable(currentTurn: number): boolean {

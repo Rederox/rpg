@@ -10,14 +10,17 @@ import { tradTpyesTOfrench } from '../../utils/functions';
 
 const Arena: React.FC = () => {
     const initialBattle = new Battle(
-        new Monster("Pikachu", 80, 50, 120, 60, [
-            new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75,Element.Electric),
-            new Skill("Statik", SkillType.Heal, 2, 90, 50,Element.Electric)
+        new Monster("Pikachu", 40, 40, 160, 60, [
+            new Skill("Thunderbolt ", SkillType.Attack, 0, 70, 80,Element.Electric),
+            new Skill("Quick Attack ", SkillType.Attack, 0, 100, 60,Element.Normal),
+            new Skill("Statik ", SkillType.Heal, 2, 90, 50,Element.Electric)
         ], 
         Element.Electric
         ),
-        new Monster("Boss", 80, 50, 200, 4, [
-            new Skill("Fire Blast", SkillType.Attack, 0, 85, 50,Element.Water)
+        new Monster("Boss", 85, 60, 200, 4, [
+            new Skill("Fire Blast ", SkillType.Attack, 0, 85, 60,Element.Fire),
+            new Skill("Flamethrower ", SkillType.Attack, 2, 80, 70,Element.Fire),
+            new Skill("Heal ", SkillType.Heal, 4, 100, 50,Element.Normal),
         ], Element.Water)
     );
 
@@ -33,7 +36,12 @@ const Arena: React.FC = () => {
     useEffect(() => {
         if (turn) {
             const timer = setTimeout(() => {
-                const impact = battle.bossTurn();
+                if (battle.status !== "ACTIVE") {
+                    return;
+                }
+                const bossSkillInfo = battle.bossTurn();
+                const skill = bossSkillInfo?.skill;
+                const impact = bossSkillInfo?.history;
                 setBossImpact(impact);
                 const history = battle.nextTurn();
                 setHistoryAttack((prev: any) => [...prev, {history, impact}]);
@@ -44,7 +52,8 @@ const Arena: React.FC = () => {
     }, [turn, battle]);
     
     const handleSkillUse = (skillIndex: number) => {
-        const impact = battle.monster.useSkill(battle.boss, skillIndex);
+        console.log("skill", battle.monster.skills[skillIndex].name,"delay", battle.monster.skills[skillIndex].activationTurn);
+        const impact = battle.useSkill(battle.monster,battle.boss, skillIndex);
         const history = battle.nextTurn();
         setMonsterImpact(impact);
         setHistoryAttack((prev: any) => [...prev, {history, impact}]);
@@ -77,7 +86,7 @@ const Arena: React.FC = () => {
             </div>
             <div className="controls">
                 {battle.monster.skills.map((skill, index) => (
-                    <button key={index} onClick={() => handleSkillUse(index)} disabled={battle.status !== "ACTIVE"}>
+                    <button key={index} onClick={() => handleSkillUse(index)} disabled={battle.status !== "ACTIVE"||!skill.isAvailable(battle.turn)}>
                         {skill.name}
                     </button>
                 ))}
