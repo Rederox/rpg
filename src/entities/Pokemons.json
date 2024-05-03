@@ -7,26 +7,34 @@
         "speed" : 50,
         "skills" : [
             {
-                "name" : "Thunderbolt",
+                "name" : "Fatal Foudre",
                 "type" : "ATTACK",
-                "delay" : 2,
+                "delay" : 4,
                 "precision" : 80,
-                "power" : 90,
+                "power" : 120,
                 "element" : "Electric"
             },
             {
-                "name" : "Quick Attack",
+                "name" : "Tonnerre",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 100,
+                "power" : 80,
+                "element" : "Electric"
+            },
+            {
+                "name" : "Vive Attaque",
                 "type" : "ATTACK",
                 "delay" : 0,
                 "precision" : 100,
-                "power" : 40,
+                "power" : 60,
                 "element" : "Normal"
             },
             {
-                "name" : "Thunder Heal",
+                "name" : "Recharge",
                 "type" : "HEAL",
-                "delay" : 0,
-                "precision" : 100,
+                "delay" : 2,
+                "precision" : 90,
                 "power" : 40,
                 "element" : "Electric"
             }
@@ -34,82 +42,56 @@
         "element" : "Electric"      
     },
     {
-        "name" : "Charmander",
-        "atk" : 55,
-        "def" : 35,
-        "hp" : 170,
+        "name" : "Pingoleon",
+        "atk" : 70,
+        "def" : 50,
+        "hp" : 220,
         "speed" : 65,
         "skills" : [
             {
-                "name" : "Ember",
+                "name" : "Aqua Jet",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 100,
+                "power" : 70,
+                "element" : "Water"
+            },
+            {
+                "name" : "Jet d'eau",
                 "type" : "ATTACK",
                 "delay" : 2,
                 "precision" : 80,
                 "power" : 90,
-                "element" : "Fire"
+                "element" : "Water"
             },
             {
-                "name" : "Scratch",
+                "name" : "Griffe",
                 "type" : "ATTACK",
                 "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
-                "element" : "Normal"
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Water"
             },
             {
-                "name" : "Fire Heal",
+                "name" : "Soin",
                 "type" : "HEAL",
-                "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
-                "element" : "Fire"
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Normal"
             }
         ],
-        "element" : "Fire"      
+        "element" : "Water"      
     },
     {
-        "name" : "Squirtle",
-        "atk" : 48,
+        "name" : "Blindepique",
+        "atk" : 65,
         "def" : 65,
-        "hp" : 210,
+        "hp" : 230,
         "speed" : 43,
         "skills" : [
             {
-                "name" : "Water Gun",
-                "type" : "ATTACK",
-                "delay" : 1,
-                "precision" : 80,
-                "power" : 90,
-                "element" : "Water"
-            },
-            {
-                "name" : "Tackle",
-                "type" : "ATTACK",
-                "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
-                "element" : "Normal"
-            },
-            {
-                "name" : "Water Heal",
-                "type" : "HEAL",
-                "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
-                "element" : "Water"
-            }
-        ],
-        "element" : "Water"
-    },
-    {
-        "name" : "Bulbasaur",
-        "atk" : 45,
-        "def" : 50,
-        "hp" : 190,
-        "speed" : 45,
-        "skills" : [
-            {
-                "name" : "Vine Whip",
+                "name" : "Fouet Lianes",
                 "type" : "ATTACK",
                 "delay" : 2,
                 "precision" : 80,
@@ -117,7 +99,15 @@
                 "element" : "Grass"
             },
             {
-                "name" : "Tackle",
+                "name" : "Tempête Verte",
+                "type" : "ATTACK",
+                "delay" : 4,
+                "precision" : 70,
+                "power" : 120,
+                "element" : "Grass"
+            },
+            {
+                "name" : "Charge",
                 "type" : "ATTACK",
                 "delay" : 0,
                 "precision" : 100,
@@ -125,48 +115,181 @@
                 "element" : "Normal"
             },
             {
-                "name" : "Grass Heal",
+                "name" : "Soin",
                 "type" : "HEAL",
-                "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
-                "element" : "Grass"
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Normal"
             }
         ],
         "element" : "Grass"
     },
     {
+        "name" : "Lugulabre",
+        "atk" : 70,
+        "def" : 45,
+        "hp" : 190,
+        "speed" : 60,
+        "skills" : [
+            {
+                "name" : "Deflagration",
+                "type" : "ATTACK",
+                "delay" : 4,
+                "precision" : 70,
+                "power" : 120,
+                "element" : "Fire"
+
+            },
+            {
+                "name" : "Lance-Flamme",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 80,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Flammeche",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Soin",
+                "type" : "HEAL",
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Normal"
+            }
+        ]
+    },
+    {
         "name" : "Mewtwo",
         "atk" : 90,
-        "def" : 80,
+        "def" : 50,
         "hp" : 250,
         "speed" : 100,
         "skills" : [
             {
-                "name" : "Psychic",
+                "name" : "Psyko",
                 "type" : "ATTACK",
-                "delay" : 2,
+                "delay" : 6,
                 "precision" : 80,
                 "power" : 90,
                 "element" : "Psy"
             },
             {
-                "name" : "Scratch",
+                "name" : "Aura Sphère",
                 "type" : "ATTACK",
-                "delay" : 0,
+                "delay" : 4,
                 "precision" : 100,
-                "power" : 40,
-                "element" : "Normal"
+                "power" : 80,
+                "element" : "Psy"
             },
             {
-                "name" : "Heal",
-                "type" : "HEAL",
+                "name" : "Choc Psy",
+                "type" : "ATTACK",
                 "delay" : 0,
-                "precision" : 100,
-                "power" : 40,
+                "precision" : 80,
+                "power" : 50,
+                "element" : "Psy"
+            },
+            {
+                "name" : "Soin",
+                "type" : "HEAL",
+                "delay" : 4,
+                "precision" : 90,
+                "power" : 50,
                 "element" : "Normal"
             }
         ],
         "element" : "Psy"
+    },
+    {
+        "name" : "Rayquaza",
+        "atk" : 90,
+        "def" : 60,
+        "hp" : 250,
+        "speed" : 90,
+        "skills" : [
+            {
+                "name" : "Draco-souffle",
+                "type" : "ATTACK",
+                "delay" : 4,
+                "precision" : 70,
+                "power" : 120,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Lance-Flamme",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 80,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Tonnerre",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 80,
+                "power" : 60,
+                "element" : "Electric"
+            },
+            {
+                "name" : "Soin",
+                "type" : "HEAL",
+                "delay" : 2,
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Normal"
+            }
+        ],
+        "element" : "Normal"
+    },
+    {
+        "name" : "Arceus",
+        "atk" : 90,
+        "def" : 70,
+        "hp" : 300,
+        "speed" : 100,
+        "skills" : [
+            {
+                "name" : "Jugement",
+                "type" : "ATTACK",
+                "delay" : 6,
+                "precision" : 80,
+                "power" : 120,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Lance-Flamme",
+                "type" : "ATTACK",
+                "delay" : 4,
+                "precision" : 90,
+                "power" : 80,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Tonnerre",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 80,
+                "power" : 60,
+                "element" : "Electric"
+            },
+            {
+                "name" : "Soin",
+                "type" : "HEAL",
+                "delay" : 4,
+                "precision" : 90,
+                "power" : 50,
+                "element" : "Normal"
+            }
+        ]
     }
 ]
