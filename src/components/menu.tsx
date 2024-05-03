@@ -5,7 +5,8 @@ import '../menu.scss'
 function Menu() {
   return (
     <div className="menu">
-        <h1>pokebatle</h1>
+        <h1>poke</h1>
+        <h2>arena</h2>
         <button className='button'> jouer </button><br/>
         <button className='button' onClick={parametre} > parametre </button>
     </div>
