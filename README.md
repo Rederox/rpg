@@ -1,1 +1,63 @@
+# Arène Pokémon
 
+Ce projet est une simulation d'arène Pokémon développée en React et TypeScript. Les utilisateurs peuvent sélectionner des pokémon, les faire combattre contre un boss et utiliser différentes compétences basées sur les éléments du jeu Pokémon.
+
+## Fonctionnalités
+
+- **Sélection des Pokémon**: Choisissez un Pokémon pour entrer dans l'arène.
+- **Sélection du carte **: Choisissez une carte pour entrer dans l'arène.
+- **Sélection du musique**: Choisissez une musique pour entrer dans l'arène.
+- **Combats Dynamiques**: Les combats se déroulent en tours, où chaque monstre peut utiliser des compétences spécifiques.
+- **Système d'Éléments**: Chaque compétence a un élément associé qui influence son efficacité contre d'autres.
+- **Historique des Combats**: Suivez l'évolution du combat à chaque tour avec un historique détaillé des actions.
+
+## Technologies Utilisées
+
+- React
+- TypeScript
+- Tailwind et SCSS
+
+## Installation
+
+Pour installer et exécuter ce projet localement, suivez les instructions ci-dessous :
+
+1. Clonez le dépôt GitHub :
+   ```bash
+   git clone https://github.com/votre-username/votre-repo.git
+   ```
+2. Accédez au répertoire du projet :
+   ```bash
+   cd votre-repo
+   ```
+3. Installez les dépendances nécessaires :
+   ```bash
+   npm install
+   ```
+4. Lancez l'application :
+   ```bash
+   npm start
+   ```
+
+L'application sera accessible via `http://localhost:3000`.
+
+## Structure du Code
+
+Le projet est structuré autour des principaux modules suivants :
+
+- `Monster.ts`: Définit la classe `Monster` avec des méthodes pour les attaques et la défense.
+- `Skill.ts`: Définit la classe `Skill` représentant les compétences des monstres.
+- `Battle.ts`: Gère la logique des combats entre les monstres.
+- `Elements.ts`: Contient les définitions des éléments et leur efficacité relative.
+
+## Contribution
+
+Les contributions à ce projet sont bienvenues. Voici comment vous pouvez contribuer :
+
+1. **Fork** le dépôt sur GitHub.
+2. **Créez une branche** pour vos modifications.
+3. **Faites vos changements** et committez-les.
+4. **Envoyez un pull request** avec une description détaillée de vos modifications.
+
+## Remerciements
+
+Merci à tous ceux qui ont contribué à ce projet !
