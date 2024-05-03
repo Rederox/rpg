@@ -49,6 +49,26 @@ Le projet est structuré autour des principaux modules suivants :
 - `Skill.ts`: Définit la classe `Skill` représentant les compétences des monstres.
 - `Battle.ts`: Gère la logique des combats entre les monstres.
 - `Elements.ts`: Contient les définitions des éléments et leur efficacité relative.
+  
+## Doc du jeu
+
+Pokemon Battle est une reproduction du système de combat pokemon.
+
+Il y a 3 difficultés différentes avec trois boss différents :
+- Facile : Mewtwo
+- Normal : Rayquaza
+- Difficile : Arceus
+
+Pour pouvoir les affronter pour pouvez choisir parmis 4 pokemons :
+- Blindépique, type Plante
+- Pingoleon, type Eau
+- Lugulabre, type Feu
+- Pikachu, type Electrique
+Le combat se fait tour par tour et certaines attaques ont besoin de plusieurs tours avant d'être à nouveau disponibles.
+
+Attention aux types des attaques et des ennemis !
+
+Bon Jeu !
 
 ## Captures d'écran
 
