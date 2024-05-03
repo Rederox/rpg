@@ -15,7 +15,7 @@ export interface Heal {
 }
 
 // Define types for entries
-type Impact = Damage | Heal | undefined;
+export type Impact = Damage | Heal | undefined;
 
 export interface HistoryEntry {
     type: 'Damage' | 'Heal' | 'Log';

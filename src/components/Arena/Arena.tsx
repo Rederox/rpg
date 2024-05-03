@@ -59,16 +59,14 @@ const Arena: React.FC = () => {
             <div className="flex">
                 <div className="bg-gray-200 p-5 m-3 rounded-lg w-[70%] flex flex-col justify-between items-stretch">
                     <div className="self-end">
-                        <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image="pokemon/pikachu.gif" maxpv={battle.boss.pvMax} />
+                        <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image="pokemon/pikachu.gif" maxpv={battle.boss.pvMax} impact={monsterImpact?.type == "Heal" ? bossImpact : monsterImpact}/>
                     </div>
                     <div className="self-start">
-                        <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image="pokemon/pickachuBack.gif" maxpv={battle.monster.pvMax} />
+                        <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image="pokemon/pickachuBack.gif" maxpv={battle.monster.pvMax} impact={bossImpact?.type == "Heal" ? monsterImpact: bossImpact}/> 
                     </div>
                 </div>
                 <div className='logs '>
                 {historyAttack && <LogsAttack entries={historyAttack} />}
-
-
                 </div>
             </div>
 
