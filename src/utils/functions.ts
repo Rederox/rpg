@@ -29,25 +29,6 @@ export function tradTpyesTOfrench(type : string) {
     }
 }
 
-// const createMonster = (data: any): Monster => {
-//     const skills = data.skills.map((skill: any) => new Skill(
-//         skill.name,
-//         skill.type,
-//         skill.delay,
-//         skill.precision,
-//         skill.power,
-//         skill.element
-//     ));
-//     return new Monster(
-//         data.name,
-//         data.atk,
-//         data.def,
-//         data.hp,
-//         data.speed,
-//         skills,
-//         data.element
-//     );
-// };
 const createMonster = (data: any): Monster => {
     const skills = data.skills.map((skill: any) => {
         console.log("Processing skill:", skill);
@@ -100,14 +81,14 @@ const toSkillType = (type: string): SkillType => {
     switch (type) {
         case "ATTACK": return SkillType.Attack;
         case "HEAL": return SkillType.Heal;
-        default: return SkillType.Attack; // Default or throw an error if needed
+        default: return SkillType.Attack;
     }
 };
 
 const toElement = (element: string | undefined): Element => {
     if (!element) {
         console.warn("Element is undefined, defaulting to Normal");
-        return Element.Normal;  // Default value if element is undefined
+        return Element.Normal;
     }
     switch (element.toUpperCase()) {
         case "ELECTRIC": return Element.Electric;
@@ -118,7 +99,7 @@ const toElement = (element: string | undefined): Element => {
         case "PSYCHIC": return Element.Psychic;
         default: 
             console.warn(`Unknown element: ${element}`);
-            return Element.Normal;  // Default or handle as needed
+            return Element.Normal; 
     }
 };
 
