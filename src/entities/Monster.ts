@@ -58,11 +58,12 @@ export class Monster{
             if(skill.type === SkillType.Attack){
                 const damamageMultiplier : ElementEffectiveness = elementEffectiveness[skill.element][target.element];
                 const damageTaken : number = target.receiveDamage(damageDealt*damamageMultiplier);
-                console.log("dammageMultiplier", damamageMultiplier, "element", this.element , "targetElement", target.element);
+                console.log("dammageMultiplier", damamageMultiplier, "element", skill.element , "targetElement", target.element);
                 return {type: 'Damage', content: {damageTaken: damageTaken, damageDealt: damageDealt, damamageMultiplier: damamageMultiplier, sender: this.name, target: target.name}};
             }
             else if(skill.type === SkillType.Heal){
-                const heal = skill.power * this.pvMax / 50;
+                let heal = skill.power * this.pvMax / 50;
+                if(this.pv + heal > this.pvMax) heal = this.pvMax - this.pv;
                 this.pv+=(heal);
                 return {type: 'Heal', content: {heal: heal, target: this.name}};
             }

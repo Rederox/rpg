@@ -50,17 +50,17 @@ export class Battle {
         return monster.skills.filter(skill => skill.activationTurn === 0 || skill.isAvailable(this.turn));
     }
 
-    monsterTurn(): any {
-        const skill = this.getNextAvailableSkill(this.monster);
-        if (skill) {
-            const skillIndex = this.monster.skills.indexOf(skill);
-            this.useSkill(this.monster, this.boss, skillIndex);
-            return skill;
-        } else {
-            console.log(`${this.monster.name} has no available skills and skips a turn.`);
-            return "NO_SKILLS_AVAILABLE";
-        }
-    }
+    // monsterTurn(): any {
+    //     const skill = this.getNextAvailableSkill(this.monster);
+    //     if (skill) {
+    //         const skillIndex = this.monster.skills.indexOf(skill);
+    //         this.useSkill(this.monster, this.boss, skillIndex);
+    //         return skill;
+    //     } else {
+    //         console.log(`${this.monster.name} has no available skills and skips a turn.`);
+    //         return "NO_SKILLS_AVAILABLE";
+    //     }
+    // }
 
     bossTurn(): any {
         const skill = this.getNextAvailableSkill(this.boss);
@@ -76,19 +76,18 @@ export class Battle {
 
     useSkill(user: Monster, target: Monster, skillIndex: number) : any {
         let skill = user.skills[skillIndex];
+        console.log("skill",user.name,skill.name ,skill.delay)
         if (!skill.isAvailable(this.turn)) {
             console.log(`${skill.name} is cooling down.`);
             return "COOLING_DOWN";
         }
-        if (skill.delay > 0 && skill.activationTurn === 0) {
-            skill.setActivation(this.turn);
-            console.log(`${skill.name} will activate in ${skill.delay} turns.`);
-            return "DELAYED";
-        }
-        const impact = user.useSkill(target, skillIndex);
+        else {
+            const impact = user.useSkill(target, skillIndex);
         // skill.resetActivation();
-        skill.setActivation(this.turn);
-        return impact;
+            skill.setActivation(this.turn);
+            return impact;
+        }
+        
     }
     
 

@@ -11,13 +11,13 @@ import { tradTpyesTOfrench } from '../../utils/functions';
 const Arena: React.FC = () => {
     const initialBattle = new Battle(
         new Monster("Pikachu", 80, 50, 120, 60, [
-            new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75,Element.Electric),
+            new Skill("Thunderbolt", SkillType.Attack, 0, 70, 40,Element.Electric),
             new Skill("Statik", SkillType.Heal, 2, 90, 50,Element.Electric)
         ], 
         Element.Electric
         ),
         new Monster("Boss", 80, 50, 200, 4, [
-            new Skill("Fire Blast", SkillType.Attack, 0, 85, 50,Element.Water)
+            new Skill("Fire Blast", SkillType.Attack, 0, 85, 60,Element.Fire)
         ], Element.Water)
     );
 
@@ -44,7 +44,8 @@ const Arena: React.FC = () => {
     }, [turn, battle]);
     
     const handleSkillUse = (skillIndex: number) => {
-        const impact = battle.monster.useSkill(battle.boss, skillIndex);
+        console.log("skill", battle.monster.skills[skillIndex].name,"delay", battle.monster.skills[skillIndex].activationTurn);
+        const impact = battle.useSkill(battle.monster,battle.boss, skillIndex);
         const history = battle.nextTurn();
         setMonsterImpact(impact);
         setHistoryAttack((prev: any) => [...prev, {history, impact}]);
@@ -79,7 +80,7 @@ const Arena: React.FC = () => {
             </div>
             <div className="controls">
                 {battle.monster.skills.map((skill, index) => (
-                    <button key={index} onClick={() => handleSkillUse(index)} disabled={battle.status !== "ACTIVE"}>
+                    <button key={index} onClick={() => handleSkillUse(index)} disabled={battle.status !== "ACTIVE"||!skill.isAvailable(battle.turn)}>
                         {skill.name}
                     </button>
                 ))}
