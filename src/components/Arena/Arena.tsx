@@ -10,14 +10,17 @@ import { tradTpyesTOfrench } from '../../utils/functions';
 
 const Arena: React.FC = () => {
     const initialBattle = new Battle(
-        new Monster("Pikachu", 80, 50, 120, 60, [
-            new Skill("Thunderbolt", SkillType.Attack, 0, 70, 40,Element.Electric),
-            new Skill("Statik", SkillType.Heal, 2, 90, 50,Element.Electric)
+        new Monster("Pikachu", 40, 40, 160, 60, [
+            new Skill("Thunderbolt ", SkillType.Attack, 0, 70, 80,Element.Electric),
+            new Skill("Quick Attack ", SkillType.Attack, 0, 100, 60,Element.Normal),
+            new Skill("Statik ", SkillType.Heal, 2, 90, 50,Element.Electric)
         ], 
         Element.Electric
         ),
-        new Monster("Boss", 80, 50, 200, 4, [
-            new Skill("Fire Blast", SkillType.Attack, 0, 85, 60,Element.Fire)
+        new Monster("Boss", 85, 60, 200, 4, [
+            new Skill("Fire Blast ", SkillType.Attack, 0, 85, 60,Element.Fire),
+            new Skill("Flamethrower ", SkillType.Attack, 2, 80, 70,Element.Fire),
+            new Skill("Heal ", SkillType.Heal, 4, 100, 50,Element.Normal),
         ], Element.Water)
     );
 
@@ -33,7 +36,12 @@ const Arena: React.FC = () => {
     useEffect(() => {
         if (turn) {
             const timer = setTimeout(() => {
-                const impact = battle.bossTurn();
+                if (battle.status !== "ACTIVE") {
+                    return;
+                }
+                const bossSkillInfo = battle.bossTurn();
+                const skill = bossSkillInfo?.skill;
+                const impact = bossSkillInfo?.history;
                 setBossImpact(impact);
                 const history = battle.nextTurn();
                 setHistoryAttack((prev: any) => [...prev, {history, impact}]);

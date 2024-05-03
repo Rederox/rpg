@@ -1,10 +1,15 @@
-import { Monster } from "./Monster";
+import { HistoryEntry, Monster } from "./Monster";
 import { Skill } from "./Skill";
 
 type BattleStatus = "ACTIVE" | "MONSTER_WON" | "BOSS_WON";
 
 export interface History{
     turn: number;
+}
+export interface BossSkillInfo{
+    skill: Skill;
+    history: HistoryEntry;
+
 }
 export class Battle {
     monster: Monster;
@@ -62,19 +67,19 @@ export class Battle {
     //     }
     // }
 
-    bossTurn(): any {
+    bossTurn(): BossSkillInfo | null{
         const skill = this.getNextAvailableSkill(this.boss);
         if (skill) {
             const skillIndex = this.boss.skills.indexOf(skill);
-            const impact = this.useSkill(this.boss, this.monster, skillIndex);
-            return impact;
+            const history = this.useSkill(this.boss, this.monster, skillIndex);
+            return {skill: skill, history: history};
         } else {
             console.log(`${this.boss.name} has no available skills and skips a turn.`)
             return null;
         }
     }
 
-    useSkill(user: Monster, target: Monster, skillIndex: number) : any {
+    useSkill(user: Monster, target: Monster, skillIndex: number) : any{
         let skill = user.skills[skillIndex];
         console.log("skill",user.name,skill.name ,skill.delay)
         if (!skill.isAvailable(this.turn)) {
@@ -82,10 +87,10 @@ export class Battle {
             return "COOLING_DOWN";
         }
         else {
-            const impact = user.useSkill(target, skillIndex);
+            const history = user.useSkill(target, skillIndex);
         // skill.resetActivation();
             skill.setActivation(this.turn);
-            return impact;
+            return history;
         }
         
     }

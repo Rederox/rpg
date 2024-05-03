@@ -62,7 +62,7 @@ export class Monster{
                 return {type: 'Damage', content: {damageTaken: damageTaken, damageDealt: damageDealt, damamageMultiplier: damamageMultiplier, sender: this.name, target: target.name}};
             }
             else if(skill.type === SkillType.Heal){
-                let heal = skill.power * this.pvMax / 50;
+                let heal = (skill.power/100) * this.pvMax;
                 if(this.pv + heal > this.pvMax) heal = this.pvMax - this.pv;
                 this.pv+=(heal);
                 return {type: 'Heal', content: {heal: heal, target: this.name}};
@@ -77,7 +77,7 @@ export class Monster{
         if(this.defend) {
             defendDef*=2;
         }
-        const actualDamage = Math.max(0, damage - this.def);
+        const actualDamage = Math.round(Math.max(0, damage - damage * (this.def/100)));
         this.pv -= actualDamage;
         return actualDamage;
     }
