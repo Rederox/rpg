@@ -3,6 +3,9 @@ import { Skill } from "./Skill";
 
 type BattleStatus = "ACTIVE" | "MONSTER_WON" | "BOSS_WON";
 
+export interface History{
+    turn: number;
+}
 export class Battle {
     monster: Monster;
     boss: Monster;
@@ -16,13 +19,13 @@ export class Battle {
         this.status = "ACTIVE";
     }
 
-    nextTurn(): void {
-        // if (this.turn % 2 === 1) {
-        //     this.bossTurn();
-        // }
+    nextTurn(): History | undefined {
+        
         this.incrementTurn();
         this.updateBattleStatus();
-        console.log(`Turn ${this.turn}`);
+        return {
+            turn: this.turn,
+        };
     }
 
     incrementTurn(): void {
