@@ -5,17 +5,20 @@ import { HistoryEntry, Monster, BattleHistoryEntry } from '../../entities/Monste
 import { Skill, SkillType } from '../../entities/Skill';
 import Pokemon from './pokemon/pokemon';
 import LogsAttack from './logs/logsAttack';
-
+import Element from '../../entities/Elements';
+import { tradTpyesTOfrench } from '../../utils/functions';
 
 const Arena: React.FC = () => {
     const initialBattle = new Battle(
         new Monster("Pikachu", 80, 50, 120, 60, [
-            new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75),
-            new Skill("Statik", SkillType.Heal, 0, 90, 50)
-        ]),
+            new Skill("Thunderbolt", SkillType.Attack, 0, 90, 75,Element.Electric),
+            new Skill("Statik", SkillType.Heal, 2, 90, 50,Element.Electric)
+        ], 
+        Element.Electric
+        ),
         new Monster("Boss", 80, 50, 200, 4, [
-            new Skill("Fire Blast", SkillType.Attack, 0, 85, 50)
-        ])
+            new Skill("Fire Blast", SkillType.Attack, 0, 85, 50,Element.Water)
+        ], Element.Water)
     );
 
     const [battle, setBattle] = useState<Battle>(initialBattle);
@@ -24,6 +27,7 @@ const Arena: React.FC = () => {
     const [bossImpact, setBossImpact] = useState<HistoryEntry>();
 
     const [historyAttack, setHistoryAttack] = useState<BattleHistoryEntry[]>([]);
+
 
 
     useEffect(() => {
@@ -55,10 +59,10 @@ const Arena: React.FC = () => {
             <div className="flex">
                 <div className="bg-gray-200 p-5 m-3 rounded-lg w-[70%] flex flex-col justify-between items-stretch">
                     <div className="self-end">
-                        <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={["Electrik", "Ténèbres"]} image="pokemon/pikachu.gif" maxpv={battle.monster.pvMax} />
+                        <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image="pokemon/pikachu.gif" maxpv={battle.boss.pvMax} />
                     </div>
                     <div className="self-start">
-                        <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={["Feu"]} image="pokemon/pickachuBack.gif" maxpv={battle.boss.pvMax} />
+                        <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image="pokemon/pickachuBack.gif" maxpv={battle.monster.pvMax} />
                     </div>
                 </div>
                 <div className='logs '>

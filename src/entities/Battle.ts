@@ -80,13 +80,14 @@ export class Battle {
             console.log(`${skill.name} is cooling down.`);
             return "COOLING_DOWN";
         }
-        if (skill.delay > 0 && skill.activationTurn === -1) {
+        if (skill.delay > 0 && skill.activationTurn === 0) {
             skill.setActivation(this.turn);
             console.log(`${skill.name} will activate in ${skill.delay} turns.`);
             return "DELAYED";
         }
         const impact = user.useSkill(target, skillIndex);
-        skill.resetActivation();
+        // skill.resetActivation();
+        skill.setActivation(this.turn);
         return impact;
     }
     

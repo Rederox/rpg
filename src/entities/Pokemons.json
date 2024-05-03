@@ -1,0 +1,172 @@
+[
+    {
+        "name" : "Pikachu",
+        "atk" : 55,
+        "def" : 40,
+        "hp" : 200,
+        "speed" : 50,
+        "skills" : [
+            {
+                "name" : "Thunderbolt",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 80,
+                "power" : 90,
+                "element" : "Electric"
+            },
+            {
+                "name" : "Quick Attack",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Thunder Heal",
+                "type" : "HEAL",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Electric"
+            }
+        ],
+        "element" : "Electric"      
+    },
+    {
+        "name" : "Charmander",
+        "atk" : 55,
+        "def" : 35,
+        "hp" : 170,
+        "speed" : 65,
+        "skills" : [
+            {
+                "name" : "Ember",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 80,
+                "power" : 90,
+                "element" : "Fire"
+            },
+            {
+                "name" : "Scratch",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Fire Heal",
+                "type" : "HEAL",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Fire"
+            }
+        ],
+        "element" : "Fire"      
+    },
+    {
+        "name" : "Squirtle",
+        "atk" : 48,
+        "def" : 65,
+        "hp" : 210,
+        "speed" : 43,
+        "skills" : [
+            {
+                "name" : "Water Gun",
+                "type" : "ATTACK",
+                "delay" : 1,
+                "precision" : 80,
+                "power" : 90,
+                "element" : "Water"
+            },
+            {
+                "name" : "Tackle",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Water Heal",
+                "type" : "HEAL",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Water"
+            }
+        ],
+        "element" : "Water"
+    },
+    {
+        "name" : "Bulbasaur",
+        "atk" : 45,
+        "def" : 50,
+        "hp" : 190,
+        "speed" : 45,
+        "skills" : [
+            {
+                "name" : "Vine Whip",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 80,
+                "power" : 90,
+                "element" : "Grass"
+            },
+            {
+                "name" : "Tackle",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Grass Heal",
+                "type" : "HEAL",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Grass"
+            }
+        ],
+        "element" : "Grass"
+    },
+    {
+        "name" : "Mewtwo",
+        "atk" : 90,
+        "def" : 80,
+        "hp" : 250,
+        "speed" : 100,
+        "skills" : [
+            {
+                "name" : "Psychic",
+                "type" : "ATTACK",
+                "delay" : 2,
+                "precision" : 80,
+                "power" : 90,
+                "element" : "Psy"
+            },
+            {
+                "name" : "Scratch",
+                "type" : "ATTACK",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            },
+            {
+                "name" : "Heal",
+                "type" : "HEAL",
+                "delay" : 0,
+                "precision" : 100,
+                "power" : 40,
+                "element" : "Normal"
+            }
+        ],
+        "element" : "Psy"
+    }
+]

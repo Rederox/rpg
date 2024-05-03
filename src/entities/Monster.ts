@@ -1,10 +1,12 @@
 import { Skill, SkillType } from "./Skill";
+import Element, { ElementEffectiveness, elementEffectiveness } from "./Elements";
 import { History } from "./Battle";
 export interface Damage {
     sender: string;
     target: string;
     damageTaken: number | undefined;
     damageDealt: number | undefined;
+    damamageMultiplier: ElementEffectiveness;
 }
 
 export interface Heal {
@@ -34,8 +36,9 @@ export class Monster{
     skills : Skill[];
     img? : string;
     defend: boolean;
+    element : Element;
 
-    constructor(name: string, atk: number, def: number, pv: number, speed: number, skills: Skill[]) {
+    constructor(name: string, atk: number, def: number, pv: number, speed: number, skills: Skill[], element: Element) {
         this.name = name;
         this.atk = atk;
         this.def = def;
@@ -44,6 +47,7 @@ export class Monster{
         this.speed = speed;
         this.skills = skills;
         this.defend = false;
+        this.element = element;
     }
 
     useSkill(target: Monster, skillIndex: number) : HistoryEntry | undefined  {
@@ -52,8 +56,10 @@ export class Monster{
         if(successChance <= skill.precision) {
             const damageDealt : number = skill.power * this.atk / 50;
             if(skill.type === SkillType.Attack){
-                const damageTaken = target.receiveDamage(damageDealt);
-                return {type: 'Damage', content: {damageTaken: damageTaken, damageDealt: damageDealt, sender: this.name, target: target.name}};
+                const damamageMultiplier : ElementEffectiveness = elementEffectiveness[skill.element][target.element];
+                const damageTaken : number = target.receiveDamage(damageDealt*damamageMultiplier);
+                console.log("dammageMultiplier", damamageMultiplier, "element", this.element , "targetElement", target.element);
+                return {type: 'Damage', content: {damageTaken: damageTaken, damageDealt: damageDealt, damamageMultiplier: damamageMultiplier, sender: this.name, target: target.name}};
             }
             else if(skill.type === SkillType.Heal){
                 const heal = skill.power * this.pvMax / 50;
@@ -65,7 +71,7 @@ export class Monster{
         }
     }
 
-    receiveDamage(damage: number) : number | undefined {
+    receiveDamage(damage: number) : number {
         let defendDef = this.def;
         if(this.defend) {
             defendDef*=2;
