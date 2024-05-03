@@ -1,12 +1,24 @@
 import React from 'react'
+import Param from './param'
+import '../menu.scss'
 
 function Menu() {
   return (
-    <div>
-        <h1>bienvenue</h1>
-        <button className='round-lg'> jouer </button>
-        <button className='round-lg'> parametre </button>
+    <div className="menu">
+        <h1>pokebatle</h1>
+        <button className='button'> jouer </button><br/>
+        <button className='button' onClick={parametre} > parametre </button>
     </div>
+  )
+}
+
+function jouer(){
+  return 
+}
+
+function parametre(){
+  return(
+    <Param/>
   )
 }
 

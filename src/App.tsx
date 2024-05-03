@@ -1,13 +1,10 @@
 import React from 'react';
 import './App.scss';
-import Test from './components/Test';
+import Menu from './components/menu';
 
 function App() {
   return (
-    <div>
-      <h1>Hello</h1>
-      <Test />
-    </div>
+      <Menu/>
   );
 }
 
