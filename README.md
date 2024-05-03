@@ -10,6 +10,7 @@ Ce projet est une simulation d'arène Pokémon développée en React et TypeScri
 - **Combats Dynamiques**: Les combats se déroulent en tours, où chaque monstre peut utiliser des compétences spécifiques.
 - **Système d'Éléments**: Chaque compétence a un élément associé qui influence son efficacité contre d'autres.
 - **Historique des Combats**: Suivez l'évolution du combat à chaque tour avec un historique détaillé des actions.
+- **Système d'affichage des degats**: Suivez en temps réel les degats subit ou les soins.
 
 ## Technologies Utilisées
 
@@ -48,6 +49,16 @@ Le projet est structuré autour des principaux modules suivants :
 - `Skill.ts`: Définit la classe `Skill` représentant les compétences des monstres.
 - `Battle.ts`: Gère la logique des combats entre les monstres.
 - `Elements.ts`: Contient les définitions des éléments et leur efficacité relative.
+
+## Captures d'écran
+
+### Acceuil
+![image](https://github.com/Rederox/rpg/assets/80551691/2efef700-3d3d-45d6-a0ee-f253a06f97bc)
+
+### Dans l'aréne
+![image](https://github.com/Rederox/rpg/assets/80551691/37a313f9-f6f5-46fd-8dd1-94d6b5f3adae)
+![image](https://github.com/Rederox/rpg/assets/80551691/d6ec3268-4be5-4d84-8e87-d7df4fbfe788)
+![image](https://github.com/Rederox/rpg/assets/80551691/660488ec-8673-49b1-9e15-a3f8d322e11e)
 
 ## Contribution
 
