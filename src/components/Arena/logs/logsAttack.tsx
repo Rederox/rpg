@@ -29,7 +29,8 @@ const LogsAttack: React.FC<{ entries: BattleHistoryEntry[] }> = ({ entries }) =>
     };
     
     return (
-        <div className="history-attacks overflow-auto bg-gray-100 p-4 m-3 rounded-lg">
+        <div className="history-attacks overflow-auto bg-gray-100 p-4 pt-0 m-3 rounded-lg w-[30vw] h-[70vh]">
+            <h1 className='custom-font fixed bg-gray-100 w-[29vw] py-3'>Les historique de combat</h1>
             {entries.map(renderImpact)}
         </div>
     );

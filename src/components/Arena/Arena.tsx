@@ -92,25 +92,28 @@ const Arena: React.FC<ArenaProps> = ({ character, map, music, difficulty, endGam
 
     return (
         <>
-            <div className=''>
-                <button onClick={muteAndUnmute}>mute</button>
-                <div className="flex  w-[80vw]">
-                    <div style={{ backgroundImage: `url('${map}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
-                        className={`bg-gray-200 rounded-lg w-[50vw] m-3 p-5 flex flex-col justify-between items-stretch relative`}>
-                        <div className="self-end ">
-                            <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image={getSpiritGifByName(battle.boss.name,"Front")} maxpv={battle.boss.pvMax} impact={monsterImpact?.type == "Heal" ? bossImpact : monsterImpact} />
+            <div className='h-[100vh] w-full flex flex-col justify-center items-center m-0'>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={muteAndUnmute}>Couper le son</button>
+                <div>
+                    <div className="flex  w-[80vw]">
+                        <div style={{ backgroundImage: `url('${map}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+                            className={`bg-gray-200 rounded-lg w-[50vw] m-3 p-5 flex flex-col justify-between items-stretch relative`}>
+                            <div className="self-end ">
+                                <Pokemon name={battle.boss.name} pv={battle.boss.pv} type={[tradTpyesTOfrench(battle.boss.element)]} image={getSpiritGifByName(battle.boss.name,"Front")} maxpv={battle.boss.pvMax} impact={monsterImpact?.type == "Heal" ? bossImpact : monsterImpact} />
+                            </div>
+                            <div className="self-start">
+                                <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image={getSpiritGifByName(character,"Back")} maxpv={battle.monster.pvMax} impact={bossImpact?.type == "Heal" ? monsterImpact : bossImpact} />
+                            </div>
                         </div>
-                        <div className="self-start">
-                            <Pokemon name={battle.monster.name} pv={battle.monster.pv} type={[tradTpyesTOfrench(battle.monster.element)]} image={getSpiritGifByName(character,"Back")} maxpv={battle.monster.pvMax} impact={bossImpact?.type == "Heal" ? monsterImpact : bossImpact} />
+                        <div className='logs '>
+                            <LogsAttack entries={historyAttack} />
                         </div>
                     </div>
-                    <div className='logs '>
-                        {historyAttack && <LogsAttack entries={historyAttack} />}
+                    <div className='w-[80vw]'>
+                        <BattleControls battle={battle} handleSkillUse={handleSkillUse} endGame={endGame} />
                     </div>
                 </div>
-
                 <p>Status: {battle.status}</p>
-                <BattleControls battle={battle} handleSkillUse={handleSkillUse} endGame={endGame} />
                 <audio ref={setAudioPlayer} />
             </div>
         </>
