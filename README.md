@@ -24,7 +24,7 @@ Pour installer et exécuter ce projet localement, suivez les instructions ci-des
 
 1. Clonez le dépôt GitHub :
    ```bash
-   git clone https://github.com/votre-username/votre-repo.git
+   git clone https://github.com/Rederox/rpg
    ```
 2. Accédez au répertoire du projet :
    ```bash
