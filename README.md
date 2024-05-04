@@ -28,7 +28,7 @@ Pour installer et exécuter ce projet localement, suivez les instructions ci-des
    ```
 2. Accédez au répertoire du projet :
    ```bash
-   cd votre-repo
+   cd rpg
    ```
 3. Installez les dépendances nécessaires :
    ```bash
